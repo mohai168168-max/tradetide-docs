@@ -1,0 +1,110 @@
+---
+title: "6 Product Architecture"
+description: ""
+---
+
+The architecture of Tradetide is built on a foundational insight: AI is only as powerful as its ability to translate reasoning into reliable execution. To achieve this, Tradetide adopts a modular, multi-layer technical system that unifies data intelligence, AI analysis, strategy validation, execution infrastructure, and decentralized incentives. Rather than treating AI and execution as isolated features, the product architecture stitches them into an “intelligence → validation → execution” pipeline capable of powering both human traders and autonomous agents.
+
+This architecture is composed of five interlocking layers—Data & Intelligence Layer, AI Insight Layer, Strategy & Backtesting Engine, Multi-Venue Execution Layer, and the Agent Orchestration & Decentralized Node Layer—all of which are surfaced to end users through an intuitive interaction layer and developer SDK. What follows is an in-depth explanation of the core modules and technical implementation behind each layer.
+
+**6.1 Data & Intelligence Foundation**
+
+At the bottom of the system sits the Data Intelligence Layer, responsible for ingesting, normalizing, and enriching the vast amount of information required for AI-driven trading. This includes real-time and historical market data, liquidity metrics, technical indicators, on-chain transactions, mempool insights, orderbook depth, volatility curves, and sentiment signals.
+
+The platform combines real-time data streams (WebSocket + low-latency pricing feeds) with a columnar-optimized historical database tailored for backtesting workloads. Liquidity and slippage models are built using deduplicated orderbook snapshots, while on-chain data is normalized into aggregated state metrics to reduce noise. Lightweight vector indexes support similarity search for pattern recognition and technical-structure retrieval.
+
+This data foundation enables AI models to reason with complete situational awareness—understanding not only price trends but also market structure, liquidity conditions, and execution constraints.\
+\
+**6.2 AI Insight Layer and Specialized Trading Models**
+
+The next layer is the AI Insight Layer, powered by a combination of LLM reasoning engines and domain-specific trading models. Instead of relying purely on a general-purpose LLM, Tradetide employs a hybrid architecture that includes:
+
+* Trading-Oriented LLMs, optimized on market commentary, research notes, and strategy analysis
+* Time-Series Forecasting Models using transformer-based and diffusion-based architectures
+* Pattern Recognition Engines capable of classifying technical structures such as double bottoms, breakouts, divergences, or exhaustion patterns
+* On-chain Anomaly Models detecting liquidity movements, smart money activity, or abnormal spikes in flow
+
+These modules operate cooperatively. For example, when a user asks about a token, the LLM orchestrator queries forecasting models for projected ranges, pattern detectors for structural signals, and liquidity engines for execution feasibility. The final output is synthesized into a clear, actionable analysis—not simply an LLM opinion but a multi-model consensus.
+
+This model architecture is designed to power both human users and autonomous agents, enabling the system to interpret user intent, identify opportunities, highlight risk, and recommend execution pathways.
+
+**6.3 Strategy Design, Simulation, and Backtesting Engine**
+
+The Strategy & Backtesting Engine bridges the gap between conversational reasoning and quant-grade validation. It allows users or autonomous agents to transform prompts, preferences, or trading ideas into structured strategies that can be simulated across multiple market cycles.
+
+The engine includes:
+
+* A time-series simulation framework with multi-timeframe and multi-asset support
+* Realistic modelling for slippage, liquidity depth, taker/maker fees, price impact, and execution delay
+* A portfolio simulator for multi-asset optimization and rebalancing
+* A rule engine that converts natural-language prompts into executable strategy logic using LLM-to-code tooling
+
+Backtesting operations are parallelized using GPU acceleration where available, allowing large-scale simulations even in a user-facing environment. As strategies become validated, they can be stored, benchmarked, or converted into live-execution agents.
+
+**6.4 Multi-Venue Execution Layer**
+
+Execution is the core differentiator of Tradetide. The Execution Layer integrates with multiple centralized and decentralized venues—Binance, OKX, and leading DEXs—using a combination of routing logic, position management, and failover recovery.
+
+Key technical features include:
+
+* Unified Order Routing: abstracted trading API that normalizes differences across CEX and DEX environments
+* Transaction Reliability Engine: automatic retries, gas-optimization algorithms, slippage-safe routing, and fallback liquidity paths
+* Position Management Module: real-time updates for PnL, exposure, collateral ratio, and risk thresholds
+* Safety Mechanisms: stop-loss triggers, error detection, rate limit handling, and execution guardrails
+
+The execution engine is built with strict separation between orchestration logic and sensitive key-handling components. Future iterations introduce distributed execution nodes, allowing the community to power transaction reliability in exchange for $TTD rewards.
+
+**6.5 Agent Orchestration Layer**
+
+Once intelligence and execution are in place, Tradetide extends into the Agent Orchestration Layer, which enables the creation and operation of autonomous AI trading agents.
+
+Agents are parameterized by:
+
+* target return
+* max drawdown
+* risk tolerance
+* preferred assets
+* execution constraints
+
+Each agent continuously re-evaluates market conditions using the AI Insight Layer, validates decisions using the backtesting engine, and executes actions using the execution layer. Over time, agents learn from performance data and user feedback, enabling a dynamic form of personalized optimization.
+
+Future extensions include:
+
+* multi-agent coordination
+* cross-agent hedging and collaboration
+* a strategy marketplace for publishing or subscribing to AI-driven agents
+
+This layer transforms Tradetide from a tool into an ecosystem of autonomous actors.
+
+**6.6 Decentralized Infrastructure & Node Incentive Layer**
+
+The platform’s long-term scalability is supported by a decentralized infrastructure layer incentivized by the $TTD token.
+
+Three types of nodes contribute to the network:
+
+* GPU Providers：supply inference and fine-tuning capacity for AI models.
+* Execution Nodes：help distribute routing and execution workloads, improving reliability across markets and time zones.
+* Strategy Developers：contribute models, signals, or agent modules, which can be integrated into the ecosystem and rewarded via emissions.
+
+The emission curve follows a soft-decay model beginning with 15M TTD per month and decreasing by \~4–5% monthly, ensuring sustainability without runaway inflation.
+
+**6.7 Developer SDK & API Layer**
+
+The Tradetide SDK provides programmatic access to:
+
+* model inference
+* strategy generation
+* execution routing
+* portfolio management
+* backtesting tools
+* agent creation
+
+Institutions can integrate external trading systems, while independent developers can build custom agents powered by Tradetide’s data and execution backbone.
+
+The SDK also includes sandbox environments and agent verification modules to ensure safety and compliance before agents enter the live execution ecosystem.
+
+**6.8 User Interaction Layer**
+
+All components converge into the User Interaction Layer, offering a unified conversational interface and professional-grade dashboard. Users interact with AI via natural language prompts, seamlessly transition into backtesting or execution workflows, and manage personalized agents—all without needing deep technical expertise.
+
+This layer abstracts the complexity of the multi-module architecture, giving traders an experience that feels simple, intuitive, and continuous.
